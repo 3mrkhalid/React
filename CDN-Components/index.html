@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cdn-components</title>
+
+    <!-- Load React from CDN (UMD production build) -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.production.min.js"
+    ></script>
+
+    <!-- Load ReactDOM from CDN (UMD production build) -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"
+    ></script>
+
+    <!-- Load Babel standalone to transpile JSX directly in the browser -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+
+    <!-- Root div where React app will be mounted -->
+    <div id="app"></div>
+    
+    <script type="text/babel">
+
+        // This is a React functional component
+       // Written in JSX, it needs Babel to be transpiled in the browser
+        const App = () => {
+            return (
+                <div>
+                    <p>Hello React</p>
+                </div>
+            );
+        };
+
+
+        // Main App Component using Class-based syntax
+        class App2 extends React.Component {
+            render() {
+                return (
+                    <div>
+                       <Header />  {/* Render Header component */}
+                       <Content /> {/* Render Content component */}
+                       <Footer />  {/* Render Footer component */}
+                    </div>
+                );
+            }
+        }
+
+        // Header Component
+        class Header extends React.Component {
+            render() {
+                return (
+                    <header>Header</header>
+                );
+            }
+        }
+
+        // Content Component
+        class Content extends React.Component {
+            render() {
+                return (
+                    <main>Content</main>
+                );
+            }
+        }
+
+        // Footer Component
+        class Footer extends React.Component {
+            render() {
+                return (
+                    <footer>Footer</footer>
+                );
+            }
+        }
+
+        // Create React root and render the main App2 component
+        const root = ReactDOM.createRoot(document.getElementById('app'));
+        root.render(<App2 />);
+    </script>
+</body>
+</html>
