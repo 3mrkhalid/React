@@ -1,15 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CDN</title>
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-</head>
-<body>
-    <div id="app">
-        
-    </div>
-</body>
+
+    <!-- Load React (UMD production build) from CDN -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.production.min.js"
+    ></script>
+
+    <!-- Load ReactDOM (UMD production build) from CDN -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"
+    ></script>
+
+    <!-- Load Babel standalone to transpile JSX in the browser -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <!-- Root element where React will mount the UI -->
+    <div id="app"></div>
+
+    <script type="text/babel">
+      // Define a variable to use inside JSX
+      let name = "user";
+
+      // JSX version of the element
+      // JSX is syntactic sugar for React.createElement calls
+      let ele1 = (
+        <p>
+          <span>{name}</span> 
+          <h2>h2</h2>        
+        </p>
+      );
+
+      // Equivalent element using React.createElement directly
+      // Shows what JSX compiles to behind the scenes
+      let ele2 = React.createElement(
+        "p",
+        null,
+        React.createElement("span", null, "Span1"),
+        React.createElement("h1", null, "H1")
+      );
+
+      // Create a React root attached to the `#app` div
+      const root = ReactDOM.createRoot(document.getElementById("app"));
+
+      // Render the JSX element (ele1) into the root
+      // To render the createElement version, replace `ele1` with `ele2`
+      root.render(ele1);
+    </script>
+  </body>
 </html>
