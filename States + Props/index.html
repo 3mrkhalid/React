@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>States + Props</title>
+
+    <!-- Load React core library (UMD version for browsers) -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+
+    <!-- Load ReactDOM (responsible for rendering React into the DOM) -->
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+
+    <!-- Load Babel so the browser can understand JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+
+    <!-- Root element where React will render the app -->
+    <div id="app"></div>
+    
+    <script type="text/babel">
+
+        // ==========================
+        // Parent Component (Class)
+        // ==========================
+        class App extends React.Component {
+
+            // Component state: stores dynamic data
+            state = {
+                title: "hello world", // string for Child component
+                name: "Amr"           // string for Child2 component
+            }
+
+            render() {
+                return(
+                    <div>
+                        {/* Display static text */}
+                        <p>Parent Component</p>
+
+                        {/* Pass 'title' state to Child component as props */}
+                        <Child title={this.state.title}/>
+
+                        {/* Pass 'name' state to Child2 component as props */}
+                        <Child2 title={this.state.name}/>
+                    </div>
+                )
+            }
+        }
+
+        // ==========================
+        // Child Component (Class)
+        // ==========================
+        class Child extends React.Component {
+            render() {
+                return(
+                    <div>
+                        {/* Access props from parent using this.props */}
+                        <p>{this.props.title}</p>
+                    </div>
+                )
+            }
+        }
+        
+        // ==========================
+        // Child2 Component (Function)
+        // Props is a function argument here
+        // ==========================
+        const Child2 = (props) => {
+            return (
+                // Access prop directly from 'props' object
+                <p>my name is {props.title}</p>
+            )
+        }
+
+        // ==========================
+        // Render the React App
+        // ==========================
+        const root = ReactDOM.createRoot(document.getElementById('app'));
+
+        // Render the App component inside the root element
+        root.render(<App />)
+
+    </script>
+</body>
+</html>
