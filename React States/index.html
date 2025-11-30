@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React States</title>
+
+    <!-- Load React core library (UMD version for browsers) -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+
+    <!-- Load ReactDOM (responsible for rendering React into the DOM) -->
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+
+    <!-- Load Babel so the browser can understand JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    
+ <div id="app"></div>
+
+ <script type="text/babel">
+
+    // ============================
+    // Main App Component (Parent)
+    // ============================
+    class App extends React.Component {
+
+        // Local state for App component
+        state = {
+            name:'App Component',
+        }
+
+        render(){
+            return(
+                <div>
+                   {/* Display App state */}
+                   <p>Name: {this.state.name} </p>
+
+                   {/* Child components */}
+                   <Header />
+                   <Content />
+                   <Footer />
+                </div>
+            ) 
+        }
+    }
+
+    // ============================
+    // Header Component
+    // ============================
+    class Header extends React.Component {
+
+        // Private state for Header component
+        state = {
+            name:'Header Component',
+            number: 1
+        }
+
+        render() {
+            return(
+                <header>
+                    {/* Display Header state */}
+                    <p>Name: {this.state.name} — Number: {this.state.number}</p>
+                </header>
+            )
+        }
+    }
+
+    // ============================
+    // Content Component
+    // ============================
+    class Content extends React.Component {
+
+        // Private state for Content component
+        state = {
+            name:'Content Component',
+            number: 2
+        }
+
+        render() {
+            return(
+                <main>
+                    {/* Display Content state */}
+                    <p>Name: {this.state.name} — Number: {this.state.number}</p>
+                </main>
+            )
+        }
+    }
+
+    // ============================
+    // Footer Component
+    // ============================
+    class Footer extends React.Component {
+
+        // Private state for Footer component
+        state = {
+            name:'Footer Component',
+            number: 3
+        }
+
+        render() {
+            return(
+                <footer>
+                    {/* Display Footer state */}
+                    <p>Name: {this.state.name} — Number: {this.state.number}</p>
+                </footer>
+            )
+        }
+    }
+
+    // Create React root and render the App component
+    const root = ReactDOM.createRoot(document.getElementById('app'));
+    root.render(<App />);
+
+ </script>
+</body>
+</html>
