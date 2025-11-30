@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Props Example</title>
+
+    <!-- Load React core library (UMD version for browsers) -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+
+    <!-- Load ReactDOM (responsible for rendering React into the DOM) -->
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+
+    <!-- Load Babel so the browser can understand JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+
+    <!-- Root element where our React app will be injected -->
+    <div id="app"></div>
+
+    <!-- Babel will transpile this JSX code before running it -->
+    <script type="text/babel">
+
+        /*
+         * App Component (Functional Component)
+         * and passes props to it.
+         */
+        const App = () => {
+            return (
+                <div>
+                    {/* Passing props to Header component */}
+                    <Header title="Hello World" name="Header" />
+                </div>
+            );
+        };
+
+        /*
+         * Header Component (Class Component)
+         * Receives props from App component.
+         * this.props accesses the passed data.
+         */
+        class Header extends React.Component {
+            render() {
+                return (
+                    <header>
+                        {/* Displaying the props on the screen */}
+                        <h1>{this.props.title}</h1>
+                        <h2>{this.props.name}</h2>
+
+                        {/* Logging props for debugging */}
+                        {console.log(this.props.title, this.props.name)}
+                    </header>
+                );
+            }
+        }
+
+        /*
+         * Attaching React to the DOM element with id="app"
+         */
+        const root = ReactDOM.createRoot(document.getElementById('app'));
+
+        /*
+         * Rendering the App component inside the root element
+         */
+        root.render(<App />);
+
+    </script>
+
+</body>
+</html>
